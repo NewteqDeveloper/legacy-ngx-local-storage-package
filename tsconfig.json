@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-local-storage": [
+        "dist/ngx-local-storage"
+      ],
+      "ngx-local-storage/*": [
+        "dist/ngx-local-storage/*"
+      ]
+    }
   }
 }
