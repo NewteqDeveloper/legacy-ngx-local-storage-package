@@ -42,5 +42,9 @@ export class NgxLocalStorageService {
 
   public removeItem(key: string) {
     localStorage.removeItem(`${this.prefix}${key}`);
-  }
+	}
+	
+	public clear() {
+		localStorage.clear();
+	}
 }
