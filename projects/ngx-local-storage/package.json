@@ -18,7 +18,8 @@
 		"local storage",
 		"angular-service",
 		"angular service",
-		"typescript"
+		"typescript",
+		"wrapper"
 	],
 	"homepage": "https://github.com/newteq/ngx-local-storage-package",
 	"license": "UNLICENSE",
