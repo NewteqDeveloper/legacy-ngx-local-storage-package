@@ -11,7 +11,7 @@ An Angular wrapper for local storage access.
 * [Installation](#installation)
 * [Usage](#usage)
 * [API](#api)
-* [Library Information](#Library Generation Information)
+* [Library Information](#Library)
 
 ## Installation
 Install via npm:
@@ -107,7 +107,9 @@ export class StorageAccessComponent implements OnInit {
 }
 ```
 
-## Library Generation Information
+## Library
+
+> Library Information
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
