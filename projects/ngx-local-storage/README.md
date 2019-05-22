@@ -5,8 +5,7 @@
 > This is an angular library that provides a service to interact with local storage easily.
 > Simply import the module and use NgxLocalStorageService to access local storage.
 
-
-An Angular wrapper for local storage access.
+This library is still in development, but it should be usable. If you find any issues, please feel free to make a pull request or alternatively log an issue at: https://github.com/newteq/ngx-local-storage-package/issues
 
 * [Installation](#installation)
 * [Usage](#usage)
