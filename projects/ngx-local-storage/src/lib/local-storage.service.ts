@@ -21,7 +21,7 @@ export class LocalStorageService {
 		}
 	}
 	
-	public setItem(key: string, value: any, toJson: boolean = true) {
+	public setItem(key: string, value: any, toJson: boolean = this.convertToFromJson) {
     let valueToStore: any;
     if (toJson) {
       valueToStore = JSON.stringify(value);
@@ -31,7 +31,7 @@ export class LocalStorageService {
     localStorage.setItem(`${this.prefix}${key}`, valueToStore);
   }
 
-  public getItem(key: string, fromJson: boolean = true) {
+  public getItem(key: string, fromJson: boolean = this.convertToFromJson) {
     const value = localStorage.getItem(`${this.prefix}${key}`);
     if (fromJson) {
       return JSON.parse(value);
