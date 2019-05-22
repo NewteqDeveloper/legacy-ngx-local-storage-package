@@ -10,7 +10,7 @@ This library is still in development, but it should be usable. If you find any i
 * [Installation](#installation)
 * [Usage](#usage)
 * [API](#api)
-* [Library Information](#Library)
+* [Library Information](#library)
 
 ## Installation
 Install via npm:
