@@ -38,10 +38,33 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
 export class AppModule { }
 ```
 
+**OR**
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NgxLocalStorageModule } from 'ngx-localstorage';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        NgxLocalStorageModule.forRoot({
+					prefix: 'my-prefix',
+					defaultJsonConversion: false,
+				})
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+
 ##### Configuration (`NgxLocalStorageModule.forRoot(localStorageConfig)`)
 
 * localStorageConfig
   * Type: `NgxLocalStorageConfig`
+	* **Optional**
+* NgxLocalstorageConfig Interface
   * __prefix__
     * Type: `string`
     * Determines the key prefix.
@@ -77,7 +100,9 @@ export class StorageAccessComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.localStorageService.clear(); // or any other API methods
+		this.localStorageService.set('key', 'value');
+		console.log(this.localStorageService.get('key'));
+		this.localStorageService.remove('key'); // or this.localStorageService.clear();
   }
 }
 ```
@@ -87,4 +112,4 @@ export class StorageAccessComponent implements OnInit {
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
 [npm-image]: https://img.shields.io/npm/v/@newteq/ngx-local-storage.svg
-[npm-url]: https://npmjs.org/package/@newteq/mgx-local-storage
+[npm-url]: https://npmjs.org/package/@newteq/ngx-local-storage
