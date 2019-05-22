@@ -1,10 +1,10 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { NgxLocalStorageConfig } from './config/ngx-local-storage-config';
 import { ConfigToken } from './config/config-token';
-import { NgxLocalStorageService } from './ngx-local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 
-export function provideStorageService(config: NgxLocalStorageConfig): NgxLocalStorageService {
-  return new NgxLocalStorageService(config);
+export function provideStorageService(config: NgxLocalStorageConfig): LocalStorageService {
+  return new LocalStorageService(config);
 }
 
 @NgModule({
@@ -22,7 +22,7 @@ export class NgxLocalStorageModule {
 					useValue: config,
 				},
 				{
-					provide: NgxLocalStorageService,
+					provide: LocalStorageService,
 					useFactory: provideStorageService,
 					deps: [
 						ConfigToken,

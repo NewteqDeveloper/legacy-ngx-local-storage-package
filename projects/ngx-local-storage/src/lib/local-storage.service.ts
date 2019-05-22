@@ -6,7 +6,7 @@ import { defaultConfig } from './consts/config';
 @Injectable({
   providedIn: 'root'
 })
-export class NgxLocalStorageService {
+export class LocalStorageService {
 
 	private readonly prefix: string;
 	private readonly convertToFromJson: boolean;
