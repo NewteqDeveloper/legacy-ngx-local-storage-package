@@ -22,7 +22,7 @@ export class NgxLocalStorageService {
 	}
 	
 	public setItem(key: string, value: any, toJson: boolean = true) {
-    let valueToStore;
+    let valueToStore: any;
     if (toJson) {
       valueToStore = JSON.stringify(value);
     } else {
