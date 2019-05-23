@@ -72,6 +72,14 @@ export class AppModule { }
     * Type: `boolean`
     * Determines if the data is stored as a JSON object. (i.e. it is stored with `JSON.stringify()` and loaded with `JSON.parse()`)
     * Default: __true__
+	* __nullUndefinedIsTheSame__
+    * Type: `boolean`
+    * Determines if the service should try null and undefined as the same type. Usually would you want this to be the case, but you can change it.
+    * Default: __true__
+	* __allowNullStorage__
+    * Type: `boolean`
+    * Determines if null can be stored against a key. If null is passed to the `setItem` method, and this flag is true, it will save null to that key. By default it will remove the item if null is passed it the `setItem` as the default value is __false__. This works in conjuction with the **nullUndefinedIsTheSame** property and if this is true, the same behaviour will happen if undefined is passed in and this is set to true. It will remove the item rather than presisting it.
+    * Default: __false__
   
 ## API
 
@@ -79,9 +87,9 @@ export class AppModule { }
 
 #### Methods
 
-- `set(key: string, value: string): void`: Adds tha value with the given key or updates an existing entry.
-- `get(key: string): string | null`: Gets the entry specified by the given key or null.
-- `remove(key: string): void`: Removes the entry specified by the given key.
+- `setItem(key: string, value: string): boolean`: Adds tha value with the given key or updates an existing entry. Returns true if the item was added to the storage. Will return false if the item was not stored and was removed (as per the `allowNullStorage` property from the config)
+- `getItem(key: string): T | any`: Gets the entry specified by the given key.
+- `removeItem(key: string): void`: Removes the entry specified by the given key.
 - `clear(): void`: Clears all entries of the applications local storage.
 
 ##### Example
