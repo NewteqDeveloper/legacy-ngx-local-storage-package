@@ -30,11 +30,19 @@ export class LocalStorageService {
 
 	public setItem(key: string, value: any, toJson: boolean = this.convertToFromJson): boolean {
 		if (!this.allowNullStorage) {
+			let removeItem: boolean;
 			if (this.nullUndefinedIsSame) {
 				if (value === undefined || value === null) {
-					this.removeItem(key);
-					return false;
+					removeItem = true;
 				}
+			} else {
+				if (value === null) {
+					removeItem = true;
+				}
+			}
+			if (removeItem) {
+				this.removeItem(key);
+				return false;
 			}
 		}
 		let valueToStore: any;
@@ -52,7 +60,7 @@ export class LocalStorageService {
 	public getItem<T = any>(key: string, fromJson: boolean = this.convertToFromJson): T | any {
 		const value = localStorage.getItem(`${this.getKey(key)}`);
 		if (fromJson) {
-			return <T> JSON.parse(value);
+			return <T>JSON.parse(value);
 		} else {
 			return value;
 		}
