@@ -1,6 +1,6 @@
 {
   "name": "@newteq/ngx-local-storage",
-	"version": "0.1.4",
+	"version": "1.0.0",
 	"description": "This is an angular library that provides a service to interact with local storage easily. Simply import the module and use NgxLocalStorageService to access local storage",
 	"author": {
 		"name": "Newteq Developer"
