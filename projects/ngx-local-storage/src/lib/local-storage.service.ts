@@ -10,17 +10,16 @@ export class LocalStorageService {
 
 	private readonly prefix: string;
 	private readonly convertToFromJson: boolean;
+	private readonly nullUndefinedIsSame: boolean;
+	private readonly allowNullStorage: boolean;
 
 	private readonly usePrefix: boolean;
 
 	constructor(@Inject(ConfigToken) config?: NgxLocalStorageConfig) {
-		if (config) {
-			this.prefix = config.prefix || defaultConfig.prefix;
-			this.convertToFromJson = config.defaultJsonConversion || defaultConfig.defaultJsonConversion;
-		} else {
-			this.prefix = defaultConfig.prefix;
-			this.convertToFromJson = defaultConfig.defaultJsonConversion;
-		}
+		this.prefix = config.prefix || defaultConfig.prefix;
+		this.convertToFromJson = config.defaultJsonConversion || defaultConfig.defaultJsonConversion;
+		this.nullUndefinedIsSame = config.nullUndefinedIsTheSame || defaultConfig.nullUndefinedIsTheSame;
+		this.allowNullStorage = config.allowNullStorage || defaultConfig.allowNullStorage;
 
 		if (this.prefix === '' || this.prefix === null || this.prefix === undefined) {
 			this.usePrefix = false;
@@ -29,7 +28,15 @@ export class LocalStorageService {
 		}
 	}
 
-	public setItem(key: string, value: any, toJson: boolean = this.convertToFromJson): void {
+	public setItem(key: string, value: any, toJson: boolean = this.convertToFromJson): boolean {
+		if (!this.allowNullStorage) {
+			if (this.nullUndefinedIsSame) {
+				if (value === undefined || value === null) {
+					this.removeItem(key);
+					return false;
+				}
+			}
+		}
 		let valueToStore: any;
 		if (toJson) {
 			valueToStore = JSON.stringify(value);
@@ -38,6 +45,8 @@ export class LocalStorageService {
 		}
 
 		localStorage.setItem(`${this.getKey(key)}`, valueToStore);
+
+		return true;
 	}
 
 	public getItem<T = any>(key: string, fromJson: boolean = this.convertToFromJson): T | any {
