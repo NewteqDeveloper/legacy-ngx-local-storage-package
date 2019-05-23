@@ -13,6 +13,13 @@ export function provideStorageService(config: NgxLocalStorageConfig): LocalStora
 	exports: [],
 })
 export class NgxLocalStorageModule {
+	constructor(@Optional() @SkipSelf() parentModule: NgxLocalStorageModule) {
+		if (parentModule) {
+			throw new Error(`NgxLocalStorageModule is already loaded.
+				Please make sure that this is only imported once (usually via the AppModule)`);
+		}
+	}
+
 	static forRoot(config?: NgxLocalStorageConfig): ModuleWithProviders {
 		return {
 			ngModule: NgxLocalStorageModule,
@@ -30,12 +37,5 @@ export class NgxLocalStorageModule {
 				}
 			]
 		};
-	}
-
-	constructor(@Optional() @SkipSelf() parentModule: NgxLocalStorageModule) {
-		if (parentModule) {
-			throw new Error(`NgxLocalStorageModule is already loaded.
-				Please make sure that this is only imported once (usually via the AppModule)`);
-		}
 	}
 }
