@@ -4,16 +4,16 @@ import { ConfigToken } from './config/config-token';
 import { LocalStorageService } from './local-storage.service';
 
 export function provideStorageService(config: NgxLocalStorageConfig): LocalStorageService {
-  return new LocalStorageService(config);
+	return new LocalStorageService(config);
 }
 
 @NgModule({
-  declarations: [],
-  imports: [],
-  exports: [],
+	declarations: [],
+	imports: [],
+	exports: [],
 })
 export class NgxLocalStorageModule {
-	static forRoot(config? : NgxLocalStorageConfig): ModuleWithProviders {
+	static forRoot(config?: NgxLocalStorageConfig): ModuleWithProviders {
 		return {
 			ngModule: NgxLocalStorageModule,
 			providers: [
@@ -33,8 +33,9 @@ export class NgxLocalStorageModule {
 	}
 
 	constructor(@Optional() @SkipSelf() parentModule: NgxLocalStorageModule) {
-    if (parentModule) {
-      throw new Error('NgxLocalStorageModule is already loaded. Please make sure that this is only imported once (usually via the AppModule)');
-    }
-  }
+		if (parentModule) {
+			throw new Error(`NgxLocalStorageModule is already loaded.
+				Please make sure that this is only imported once (usually via the AppModule)`);
+		}
+	}
 }

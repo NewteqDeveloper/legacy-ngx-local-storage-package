@@ -4,7 +4,7 @@ import { NgxLocalStorageConfig } from './config/ngx-local-storage-config';
 import { defaultConfig } from './consts/config';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class LocalStorageService {
 
@@ -20,30 +20,30 @@ export class LocalStorageService {
 			this.convertToFromJson = defaultConfig.defaultJsonConversion;
 		}
 	}
-	
+
 	public setItem(key: string, value: any, toJson: boolean = this.convertToFromJson) {
-    let valueToStore: any;
-    if (toJson) {
-      valueToStore = JSON.stringify(value);
-    } else {
-      valueToStore = value;
-    }
-    localStorage.setItem(`${this.prefix}${key}`, valueToStore);
-  }
-
-  public getItem(key: string, fromJson: boolean = this.convertToFromJson) {
-    const value = localStorage.getItem(`${this.prefix}${key}`);
-    if (fromJson) {
-      return JSON.parse(value);
-    } else {
-      return value;
-    }
-  }
-
-  public removeItem(key: string) {
-    localStorage.removeItem(`${this.prefix}${key}`);
+		let valueToStore: any;
+		if (toJson) {
+			valueToStore = JSON.stringify(value);
+		} else {
+			valueToStore = value;
+		}
+		localStorage.setItem(`${this.prefix}${key}`, valueToStore);
 	}
-	
+
+	public getItem(key: string, fromJson: boolean = this.convertToFromJson) {
+		const value = localStorage.getItem(`${this.prefix}${key}`);
+		if (fromJson) {
+			return JSON.parse(value);
+		} else {
+			return value;
+		}
+	}
+
+	public removeItem(key: string) {
+		localStorage.removeItem(`${this.prefix}${key}`);
+	}
+
 	public clear() {
 		localStorage.clear();
 	}
