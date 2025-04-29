@@ -1,3 +1,6 @@
+# Migrated
+Moved to: https://codeberg.org/newteq_github_archives/ngx-local-storage-package
+
 # ngx-local-storage 
 
 [![NPM Version][npm-image]][npm-url]
